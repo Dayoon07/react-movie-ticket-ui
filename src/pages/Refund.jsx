@@ -104,19 +104,37 @@ export default function Refund() {
     };
 
     const displayData = ticketData || {
-        movieTitle: "아바타: 물의 길",
-        movieTitleEn: "Avatar: The Way of Water",
-        reservationMoviePosterUrl: "https://via.placeholder.com/200x300/1a365d/ffffff?text=AVATAR",
-        cinemaName: "7관 (IMAX)",
-        reservedSeats: "E12,E13",
-        ratingAge: "12세 이상",
-        startShowTime: "2025-06-05 19:30",
-        totalAmount: "28,000",
-        reservationCode: ticketNumber
+        movieTitle: "값이 없습니다.",
+        movieTitleEn: "값이 없습니다.",
+        reservationMoviePosterUrl: "값이 없습니다.",
+        cinemaName: "값이 없습니다.",
+        reservedSeats: "값이 없습니다.",
+        ratingAge: "값이 없습니다.",
+        startShowTime: "값이 없습니다.",
+        totalAmount: "값이 없습니다.",
+        reservationCode: ticketNumber || "값이 없습니다."
     };
 
+    // 하민 - 환불 요청, 기능 만듬
     const removeReservedMovieTicket = async () => {
-        
+        console.log(ticketData);
+
+        try {
+            const res = await fetch(`
+                ${process.env.REACT_APP_API_SERVER}/reservation/del/movie?reservationCode=${ticketData.reservationCode}
+            `, {
+                method: "post",
+            });
+            
+            if (res.ok) {
+                const data = await res.text();
+                console.log(data);
+                alert(data);
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -231,7 +249,7 @@ export default function Refund() {
                                     다시 조회하기
                                 </button>
                                 <button 
-                                    onClick={removeReservedMovieTicket()}
+                                    onClick={removeReservedMovieTicket}
                                     className="bg-red-500 hover:bg-red-600 text-white text-xl px-6 py-3 rounded-lg font-semibold transition-all"
                                 >
                                     환불

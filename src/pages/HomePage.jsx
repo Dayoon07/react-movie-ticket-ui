@@ -85,7 +85,7 @@ export default function HomePage() {
         return (
             <div className="flex items-center justify-center px-4">
                 <div className="max-w-md w-full">
-                    <div className="bg-white rounded-2xl shadow-xl">
+                    <div className="bg-white rounded-2xl shadow-xl p-8">
                         <div className="text-center mb-8">
                             {/* <div className="text-6xl mb-4">🎫</div> */}
                             <h1 className="text-3xl font-bold text-gray-800 mb-2">로그인</h1>
