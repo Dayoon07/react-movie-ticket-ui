@@ -9,6 +9,7 @@ import Refund from "./pages/Refund";
 import SeatSelect from "./pages/SeatSelect";
 
 import NotFound from "./pages/NotFound";
+import AiChatPage from "./pages/AiChatPage";
 
 export default function App() {
     return (
@@ -24,6 +25,7 @@ export default function App() {
                         <Route path="/reservation-ticket-print" element={<ReservationTicket />} />
                         <Route path="/refund" element={<Refund />} />
                         <Route path="/seat-select" element={<SeatSelect />} />
+                        <Route path="/ai/chat" element={<AiChatPage />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>

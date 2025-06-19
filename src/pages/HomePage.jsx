@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { jsx } from "react/jsx-runtime";
 
 export default function HomePage() {
     const navigate = useNavigate();
@@ -13,7 +12,8 @@ export default function HomePage() {
     const services = [
         { title: "티켓 구매", img: "🎫", loc: "/movie-list" },
         { title: "예매티켓출력", img: "🧾", loc: "/reservation-ticket-print" },
-        { title: "환불", img: "💳", loc: "/refund" }
+        { title: "환불", img: "💳", loc: "/refund" },
+        { title: "영화 추천 AI 사용", img: "🤖", loc: "/ai/chat" }
     ];
 
     const btnStyle = "mt-6 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 hover:from-blue-600 hover:to-indigo-700";
