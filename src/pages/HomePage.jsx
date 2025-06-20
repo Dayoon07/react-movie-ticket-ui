@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { REACT_APP_API_SERVER } from "../config/api";
 
 export default function HomePage() {
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ export default function HomePage() {
         setLoginError('');
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_SERVER}/user/admin/login`, {
+            const response = await fetch(`${REACT_APP_API_SERVER}/user/admin/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

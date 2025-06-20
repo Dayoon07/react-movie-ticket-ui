@@ -10,9 +10,11 @@
     "lucide-react": "^0.515.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-markdown": "^10.1.0",
     "react-movie-ticket-ui": "file:",
     "react-router-dom": "^7.6.1",
     "react-scripts": "5.0.1",
+    "react-syntax-highlighter": "^15.6.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

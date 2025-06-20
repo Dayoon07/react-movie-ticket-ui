@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { REACT_APP_API_SERVER } from "../config/api";
 
 export default function SeatSelection(props) {
     const location = useLocation();
@@ -33,7 +34,6 @@ export default function SeatSelection(props) {
         { id: '토스페이', name: '토스페이', icon: '💙' }
     ];
 
-    // 총 가격 계산
     const totalPrice = selectedSeats.length * seatPrice;
 
     // 기본 좌석 레이아웃 생성
@@ -93,14 +93,13 @@ export default function SeatSelection(props) {
         }
     }
 
-    // 예약된 좌석 정보 가져오기
     useEffect(() => {
         async function fetchOccupiedSeats() {
             const showtimeId = movieData?.showtimeId;
             if (!showtimeId) return;
 
             try {
-                const res = await fetch(`${process.env.REACT_APP_API_SERVER}/reservation/seats/occupied?showtimeId=${showtimeId}`);
+                const res = await fetch(`${REACT_APP_API_SERVER}/reservation/seats/occupied?showtimeId=${showtimeId}`);
                 if (res.ok) {
                     const data = await res.json();
                     setOccupiedSeats(data);
@@ -164,7 +163,7 @@ export default function SeatSelection(props) {
         };
 
         try {
-            const res = await fetch(`${process.env.REACT_APP_API_SERVER}/reservation`, {
+            const res = await fetch(`${REACT_APP_API_SERVER}/reservation`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -209,7 +208,6 @@ export default function SeatSelection(props) {
             <h1 className="text-3xl text-center font-bold mb-4">좌석 선택</h1>
             <div>
                 <div className="grid grid-cols-1 lg:grid-cols-3 mb-8">
-                    {/* 왼쪽: 영화 포스터 및 정보 */}
                     <div className="lg:col-span-1">
                         <div className="bg-white rounded-lg">
                             <img src={movieData?.posterImageUrl} alt={movieData?.movieTitle} className="w-[275px] object-cover rounded mb-4" />
@@ -229,8 +227,7 @@ export default function SeatSelection(props) {
                                 </div>
                             </div>
                         </div>
-                        
-                        {/* 선택된 좌석 정보 */}
+
                         <div className="bg-white rounded-lg w-60 p-4 mt-4">
                             <h3 className="text-lg font-bold mb-3">선택된 좌석</h3>
                             <div className="flex flex-wrap gap-2">
@@ -246,7 +243,6 @@ export default function SeatSelection(props) {
                             </div>
                         </div>
 
-                        {/* 결제 버튼 */}
                         <div className="mt-4">
                             <button
                                 onClick={handlePaymentButtonClick}
@@ -257,15 +253,12 @@ export default function SeatSelection(props) {
                         </div>
                     </div>
 
-                    {/* 오른쪽: 좌석 선택 */}
                     <div className="lg:col-span-2 lg:mt-8">
-                        {/* 스크린 */}
                         <div className="text-center mb-8">
                             <div className="bg-gradient-to-r from-gray-600 to-gray-400 rounded-t-full h-3 w-80 mx-auto mb-2"></div>
                             <p className="text-gray-400 text-sm">SCREEN</p>
                         </div>
 
-                        {/* 좌석 범례 */}
                         <div className="flex justify-center mb-6 space-x-6">
                             <div className="flex items-center space-x-2">
                                 <div className="w-6 h-6 bg-green-400 rounded"></div>
@@ -281,7 +274,6 @@ export default function SeatSelection(props) {
                             </div>
                         </div>
 
-                        {/* 좌석 배치 */}
                         <div className="bg-white rounded-lg p-6 mb-6">
                             <div className="space-y-3">
                                 {seatLayout.map(({ row, seats }) => {
@@ -290,10 +282,8 @@ export default function SeatSelection(props) {
                                     
                                     return (
                                         <div key={row} className="flex items-center justify-center space-x-2">
-                                            {/* 왼쪽 행 표시 */}
                                             <div className="w-8 text-center font-bold text-gray-600">{row}</div>
                                             
-                                            {/* 왼쪽 좌석들 */}
                                             <div className="flex space-x-1">
                                                 {leftSeats.map(seat => (
                                                     <button
@@ -307,10 +297,8 @@ export default function SeatSelection(props) {
                                                 ))}
                                             </div>
                                             
-                                            {/* 중앙 통로 */}
                                             <div className="w-8"></div>
                                             
-                                            {/* 오른쪽 좌석들 */}
                                             <div className="flex space-x-1">
                                                 {rightSeats.map(seat => (
                                                     <button
@@ -324,7 +312,6 @@ export default function SeatSelection(props) {
                                                 ))}
                                             </div>
                                             
-                                            {/* 오른쪽 행 표시 */}
                                             <div className="w-8 text-center font-bold text-gray-600">{row}</div>
                                         </div>
                                     );
@@ -334,7 +321,6 @@ export default function SeatSelection(props) {
                     </div>
                 </div>
 
-                {/* 결제 방법 선택 모달 */}
                 {showPaymentModal && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                         <div className="bg-white rounded-lg p-6 w-96">

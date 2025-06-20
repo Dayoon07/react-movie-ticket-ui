@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { REACT_APP_API_SERVER } from "../config/api";
 
 export default function ReservationTicket() {
     const [ticketNumber, setTicketNumber] = useState("");
@@ -29,7 +30,7 @@ export default function ReservationTicket() {
         
         try {
 
-            const res = await fetch(`${process.env.REACT_APP_API_SERVER}/reservation/movie/info?reservationCode=${ticketNumber}`);
+            const res = await fetch(`${REACT_APP_API_SERVER}/reservation/movie/info?reservationCode=${ticketNumber}`);
 
             if (res.ok) {
                 const data = await res.json();
@@ -108,7 +109,6 @@ export default function ReservationTicket() {
         reservationCode: ticketNumber
     };
 
-    // 관람 연령 배지 색상 설정 함수
     function getRatingBadgeStyle(ratingAge) {
         switch (ratingAge) {
             case '전체관람가':

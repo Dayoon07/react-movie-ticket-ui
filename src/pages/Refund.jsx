@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AlertCircle } from "lucide-react";
+import { REACT_APP_API_SERVER } from "../config/api";
 
 export default function Refund() {
     const [ticketNumber, setTicketNumber] = useState("");
@@ -30,7 +31,7 @@ export default function Refund() {
         
         try {
 
-            const res = await fetch(`${process.env.REACT_APP_API_SERVER}/reservation/movie/info?reservationCode=${ticketNumber}`);
+            const res = await fetch(`${REACT_APP_API_SERVER}/reservation/movie/info?reservationCode=${ticketNumber}`);
 
             if (res.ok) {
                 const data = await res.json();
@@ -121,7 +122,7 @@ export default function Refund() {
 
         try {
             const res = await fetch(`
-                ${process.env.REACT_APP_API_SERVER}/reservation/del/movie?reservationCode=${ticketData.reservationCode}
+                ${REACT_APP_API_SERVER}/reservation/del/movie?reservationCode=${ticketData.reservationCode}
             `, {
                 method: "post",
             });
@@ -216,7 +217,6 @@ export default function Refund() {
                                 환불하신 티켓 정보를 확인해 주세요.
                             </p>
 
-                            {/* 유의사항 */}
                             <div className="flex items-start bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 p-4 rounded-md mb-6">
                                 <AlertCircle className="w-6 h-6 mr-2 mt-1" />
                                 <div>
@@ -229,7 +229,6 @@ export default function Refund() {
                                 </div>
                             </div>
 
-                            {/* 환불 정보 */}
                             <div className="bg-gray-50 p-6 rounded-lg shadow-inner mb-8 text-base space-y-2">
                                 <div><span className="font-semibold">🎬 영화:</span> {displayData.movieTitle}</div>
                                 <div><span className="font-semibold">🏢 상영관:</span> {displayData.cinemaName}</div>
@@ -240,7 +239,6 @@ export default function Refund() {
                                 <div><span className="font-semibold">🔞 관람등급:</span> {displayData.ratingAge}</div>
                             </div>
 
-                            {/* 버튼 */}
                             <div className="flex justify-center gap-6">
                                 <button 
                                     onClick={handleReset}

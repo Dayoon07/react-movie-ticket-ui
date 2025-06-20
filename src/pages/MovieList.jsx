@@ -1,7 +1,6 @@
 import React, { use, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-const API_BASE_URL = process.env.REACT_APP_API_SERVER;
+import { useLocation, useNavigate } from 'react-router-dom';
+import { REACT_APP_API_SERVER } from "../config/api";
 
 export default function MovieList() {
     const [movies, setMovies] = useState([]);
@@ -15,7 +14,7 @@ export default function MovieList() {
     useEffect(() => {
         async function fetchMovies() {
             try {
-                const res = await fetch(`${API_BASE_URL}/movie/all`);
+                const res = await fetch(`${REACT_APP_API_SERVER}/movie/all`);
                 if (res.ok) {
                     const data = await res.json();
                     console.log(data);
@@ -29,7 +28,6 @@ export default function MovieList() {
         fetchMovies();
     }, []);
 
-    // 영화 클릭 시 모달 오픈
     const handleMovieClick = (movie) => {
         setSelectedMovie(movie);
         setPeopleCount(1);
@@ -37,7 +35,6 @@ export default function MovieList() {
         setShowModal(true);
     };
 
-    // 인원 선택 후 좌석 선택 페이지로 이동
     const handlePeopleSelect = () => {
         setShowModal(false);
         navigate('/seat-select', {
@@ -49,7 +46,6 @@ export default function MovieList() {
         });
     };
 
-    // 관람 연령 배지 색상 설정 함수
     function getRatingBadgeStyle(ratingAge) {
         switch (ratingAge) {
             case '전체관람가':
@@ -81,7 +77,6 @@ export default function MovieList() {
                         className="relative overflow-hidden hover:shadow-xl duration-300 cursor-pointer bg-white"
                         onClick={() => handleMovieClick(movie)}
                     >
-                        {/* 관람 연령 배지 */}
                         <div
                             className={`absolute top-2 right-2 px-2.5 py-1 rounded text-lg font-bold shadow-md ${getRatingBadgeStyle(movie.ratingAge)}`}
                         >
@@ -113,7 +108,6 @@ export default function MovieList() {
                 ))}
             </div>
 
-            {/* 관람 인원 선택 모달 */}
             {showModal && selectedMovie && (
                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="bg-white rounded-2xl shadow-xl w-[90%] max-w-md p-8 animate-fadeIn relative">
@@ -139,7 +133,6 @@ export default function MovieList() {
                             </div>
                         </div>
 
-                        {/* 인원 수 + 총 가격 */}
                         <div className="flex flex-col items-center gap-2 mb-6">
                             <div className="flex items-center justify-center gap-4">
                                 <button
