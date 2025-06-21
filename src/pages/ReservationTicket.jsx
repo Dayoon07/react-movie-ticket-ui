@@ -212,8 +212,8 @@ export default function ReservationTicket() {
                             </div>
 
                             <div className="p-8">
-                                <div className="flex gap-6 mb-8">
-                                    <div className="flex-shrink-0 mx-auto md:mx-0 relative">
+                                <div className="md:flex gap-6 mb-8">
+                                    <div className="md:flex-shrink-0 mx-auto md:mx-0 relative">
                                         <div
                                             className={`absolute top-2 right-2 px-2.5 py-1 rounded text-lg font-bold shadow-md ${getRatingBadgeStyle(displayData.ratingAge)}`}
                                         >
@@ -222,19 +222,19 @@ export default function ReservationTicket() {
                                         <img 
                                             src={displayData.reservationMoviePosterUrl} 
                                             alt={displayData.movieTitle}
-                                            className="w-64 object-cover rounded-lg shadow-md"
+                                            className="md:w-64 max-md:w-full object-cover rounded-lg shadow-md"
                                         />
                                     </div>
                                     
                                     <div>
                                         <div className="text-center md:text-left">
-                                            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                                            <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 max-md:mt-2">
                                                 {displayData.movieTitle}
                                             </h3>
                                         </div>
 
-                                        <div className="flex gap-4 my-4">
-                                            <div className="w-64 space-y-4">
+                                        <div className="md:flex gap-4 my-4">
+                                            <div className="md:w-64 space-y-4">
                                                 <div className="bg-gray-100 rounded-lg p-4">
                                                     <h4 className="font-semibold text-gray-700 mb-3 text-center">상영 정보</h4>
                                                     <div className="space-y-3">
@@ -248,13 +248,13 @@ export default function ReservationTicket() {
                                                         </div>
                                                         <div className="flex justify-between">
                                                             <span className="text-gray-600">좌석</span>
-                                                            <span className="font-semibold text-gray-800 w-[170px]">{seatFormatter(displayData.reservedSeats)}</span>
+                                                            <span className="font-semibold text-gray-800 md:w-[170px] max-md:w[200px]">{seatFormatter(displayData.reservedSeats)}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className="w-64 space-y-4">
+                                            <div className="md:w-64 space-y-4">
                                                 <div className="bg-gray-100 rounded-lg p-4">
                                                     <h4 className="font-semibold text-gray-700 mb-3 text-center">예매 정보</h4>
                                                     <div className="space-y-3">

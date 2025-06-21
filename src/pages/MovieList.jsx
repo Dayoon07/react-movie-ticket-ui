@@ -70,7 +70,7 @@ export default function MovieList() {
         <div className="px-8">
             <h1 className="text-4xl font-semibold text-center mb-8">티켓구매</h1>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {movies.map((movie) => (
                     <div
                         key={`${movie.movieId}-${movie.movieTitle}-${movie.startTime}`}

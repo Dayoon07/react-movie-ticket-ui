@@ -40,21 +40,27 @@ export default function Header() {
     const isHomePage = location.pathname === "/";
 
     return (
-        <div className="md:flex justify-between items-center px-4 pt-4">
-            <div className="flex items-center space-x-6">
-                <div className="flex items-center space-x-3">
+        <div className="flex justify-between items-center px-4 pt-4 max-lg:pb-8">
+            <div className="flex items-center lg:space-x-6 max-lg:space-x-2">
+                <div className="flex items-center lg:space-x-3">
                     {!isHomePage && (
-                        <button onClick={() => navigate(-1)} title="뒤로 가기" style={{height: "60px"}}>
-                            <img src="/static/img/arrow-img.jpg" alt="..." style={{width: "60px", height: "45px"}} />
+                        <button onClick={() => navigate(-1)} title="뒤로 가기" className="lg:h-[60px] max-lg:h-[45px]">
+                            <img src="/static/img/arrow-img.jpg" alt="..." className="lg:w-[60px] lg:h-[45px] max-lg:w-[45px] max-lg:h-[30px]" />
                         </button>
                     )}
-                    <h2 className="text-6xl font-semibold text-red-500 font-mono cursor-pointer" onClick={() => {navigate("/")}}>CGV</h2>
+                    <h2 className="text-6xl font-semibold text-red-500 font-mono cursor-pointer max-lg:text-4xl" 
+                        onClick={
+                            () => {navigate("/")}
+                        }
+                    >
+                        CGV
+                    </h2>
                 </div>
-                <p className="font-semibold text-2xl mt-1">영화 예매 프로그램</p>
+                <p className="font-semibold text-2xl lg:mt-1 max-lg:text-xl">안양시 범계점</p>
             </div>
-            <div className="flex items-center justify-between space-x-6">
-                <p className="text-2xl mt-1">{todayDateString} ({todayDay})</p>
-                <p className="text-4xl">{currentTime}</p>
+            <div className="lg:flex items-center justify-between space-x-6">
+                <p className="text-2xl max-lg:text-lg lg:mt-1 max-lg:text-right">{todayDateString} ({todayDay})</p>
+                <p className="text-4xl max-lg:text-xl max-lg:text-right">{currentTime}</p>
             </div>
         </div>
     );

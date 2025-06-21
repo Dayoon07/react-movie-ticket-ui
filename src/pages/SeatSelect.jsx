@@ -102,6 +102,7 @@ export default function SeatSelection(props) {
                 const res = await fetch(`${REACT_APP_API_SERVER}/reservation/seats/occupied?showtimeId=${showtimeId}`);
                 if (res.ok) {
                     const data = await res.json();
+                    console.log(data);
                     setOccupiedSeats(data);
                 }
             } catch (e) {
