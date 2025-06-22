@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AlertCircle } from "lucide-react";
 import { REACT_APP_API_SERVER } from "../config/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Refund() {
     const [ticketNumber, setTicketNumber] = useState("");
@@ -8,6 +9,8 @@ export default function Refund() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [ticketData, setTicketData] = useState(null);
+
+    const navigate = useNavigate();
 
     const validateTicketNumber = (number) => {
         const pattern = /^\d{4}-\d{4}-\d{4}-\d{3}$/;
@@ -30,7 +33,6 @@ export default function Refund() {
         setLoading(true);
         
         try {
-
             const res = await fetch(`${REACT_APP_API_SERVER}/reservation/movie/info?reservationCode=${ticketNumber}`);
 
             if (res.ok) {
@@ -131,6 +133,7 @@ export default function Refund() {
                 const data = await res.text();
                 console.log(data);
                 alert(data);
+                navigate("/");
             }
 
         } catch (error) {
