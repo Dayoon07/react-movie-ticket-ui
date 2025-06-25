@@ -79,14 +79,14 @@ const MessageBubble = memo(({ message, isTyping }) => {
                     <User className="w-5 h-5 text-black" />
                 )}
             </div>
-            <div className={`max-w-xs lg:max-w-2xl ${
-                message.type === 'user' ? 'text-right' : ''
+            <div className={`max-w-xs lg:max-w-5xl ${
+                message.type === 'user' ? 'text-left' : ''
             }`}>
-                <div className={`p-4 rounded-2xl ${
+                <div className={`rounded-2xl ${
                     message.type === 'ai'
-                        ? 'bg-white/10 backdrop-blur-sm border border-purple-500/20 text-black'
-                        : 'bg-white/10 backdrop-blur-sm border border-red-600/20 text-white'
-                } shadow-lg`}>
+                        ? 'w-full pt-4' // bg-white/10 backdrop-blur-sm border border-purple-500/20 text-black
+                        : 'bg-white/10 backdrop-blur-sm border shadow-lg text-white lg:max-w-2xl p-4'
+                } `}>
                     {message.type === 'ai' ? (
                         <div className="text-sm leading-relaxed text-black">
                             <MarkdownContent content={message.content} />
