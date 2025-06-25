@@ -1,4 +1,4 @@
 const port = 9000;
 export const REACT_APP_API_SERVER = `
-    ${window.location.protocol}//${window.location.hostname}:${port}/movie/api
+    https://2b03-182-231-142-47.ngrok-free.app/movie/api
 `;
