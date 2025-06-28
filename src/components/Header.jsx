@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import arrorImg from "../img/arrow-img.jpg";
 
 export default function Header() {
     const [currentTime, setCurrentTime] = useState("");
@@ -45,7 +46,7 @@ export default function Header() {
                 <div className="flex items-center lg:space-x-3">
                     {!isHomePage && (
                         <button onClick={() => navigate(-1)} title="뒤로 가기" className="lg:h-[60px] max-lg:h-[45px]">
-                            <img src="/static/img/arrow-img.jpg" alt="..." className="lg:w-[60px] lg:h-[45px] max-lg:w-[45px] max-lg:h-[30px]" />
+                            <img src={arrorImg} alt="..." className="lg:w-[60px] lg:h-[45px] max-lg:w-[45px] max-lg:h-[30px]" />
                         </button>
                     )}
                     <h2 className="text-6xl font-semibold text-red-500 font-mono cursor-pointer max-lg:text-4xl" 
