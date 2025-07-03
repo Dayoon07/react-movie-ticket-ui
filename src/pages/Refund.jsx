@@ -123,10 +123,13 @@ export default function Refund() {
         console.log(ticketData);
 
         try {
-            const res = await fetch(`
-                ${REACT_APP_API_SERVER}/reservation/del/movie?reservationCode=${ticketData.reservationCode}
-            `, {
+            const res = await fetch(`${REACT_APP_API_SERVER}/reservation/del/movie`, {
                 method: "post",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    reservationCode: ticketData.reservationCode,
+                    seatCount: ticketData.reservedSeats.split(",").length
+                })
             });
             
             if (res.ok) {

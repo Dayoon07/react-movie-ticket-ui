@@ -1,5 +1,5 @@
-import React, { use, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { REACT_APP_API_SERVER } from "../config/api";
 
 export default function MovieList() {
@@ -8,6 +8,8 @@ export default function MovieList() {
     const [peopleCount, setPeopleCount] = useState(1);
     const [showModal, setShowModal] = useState(false);
     const [moviePrice, setMoviePrice] = useState(0);
+    const [searchedMovie, setSearchedMovie] = useState([]);
+    const [searchWord, setSearchWord] = useState("");
 
     const navigate = useNavigate();
 
@@ -17,7 +19,6 @@ export default function MovieList() {
                 const res = await fetch(`${REACT_APP_API_SERVER}/movie/all`);
                 if (res.ok) {
                     const data = await res.json();
-                    console.log(data);
                     setMovies(data);
                 }
             } catch (error) {
@@ -28,10 +29,16 @@ export default function MovieList() {
         fetchMovies();
     }, []);
 
+    useEffect(() => {
+        if (searchWord.trim() === "") {
+            setSearchedMovie([]);
+        }
+    }, [searchWord]);
+
     const handleMovieClick = (movie) => {
         setSelectedMovie(movie);
         setPeopleCount(1);
-        setMoviePrice(movie.price || 0); // 영화 가격 설정
+        setMoviePrice(movie.price || 0);
         setShowModal(true);
     };
 
@@ -66,21 +73,48 @@ export default function MovieList() {
         }
     }
 
+    const searchWordMovieTyping = useCallback((e) => {
+        setSearchWord(e.target.value);
+    }, []);
+
+    const searchMovieFunc = async () => {
+        try {
+            const res = await fetch(`${REACT_APP_API_SERVER}/search?title=${searchWord}`);
+            if (res.ok) {
+                const data = await res.json();
+                setSearchedMovie(data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <div className="px-8">
             <h1 className="text-4xl font-semibold text-center mb-8">티켓구매</h1>
 
+            <div className="w-[300px] text-right mb-8 ml-auto">
+                <input
+                    type="text"
+                    value={searchWord}
+                    onChange={searchWordMovieTyping}
+                    placeholder="영화 이름을 입력해주세요"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') searchMovieFunc();
+                    }}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-4 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {movies.map((movie) => (
+                {(searchedMovie.length > 0 ? searchedMovie : movies).map((movie) => (
                     <div
                         key={`${movie.movieId}-${movie.movieTitle}-${movie.startTime}`}
                         className="relative overflow-hidden hover:shadow-xl duration-300 cursor-pointer bg-white"
                         onClick={() => handleMovieClick(movie)}
                     >
-                        <div
-                            className={`absolute top-2 right-2 px-2.5 py-1 rounded text-lg font-bold shadow-md ${getRatingBadgeStyle(movie.ratingAge)}`}
-                        >
-                            {String(movie.ratingAge).substring(0, 2) == "청소" ? "18" : String(movie.ratingAge).substring(0, 2)}
+                        <div className={`absolute top-2 right-2 px-2.5 py-1 rounded text-lg font-bold shadow-md ${getRatingBadgeStyle(movie.ratingAge)}`}>
+                            {String(movie.ratingAge).substring(0, 2) === "청소" ? "18" : String(movie.ratingAge).substring(0, 2)}
                         </div>
 
                         <img
