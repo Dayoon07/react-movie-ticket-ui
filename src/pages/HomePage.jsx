@@ -35,7 +35,10 @@ export default function HomePage() {
         try {
             const response = await fetch(`${REACT_APP_API_SERVER}/user/admin/login`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true',
+                },
                 body: JSON.stringify({
                     name: loginForm.phone,
                     password: loginForm.password

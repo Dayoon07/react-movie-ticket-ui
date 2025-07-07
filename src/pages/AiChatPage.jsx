@@ -166,8 +166,13 @@ export default function AiChatPage() {
 
         try {
             const response = await fetch(
-                `${REACT_APP_API_SERVER}/ai/chat?q=${encodeURIComponent(currentInput)}`,
-                { signal: abortControllerRef.current.signal }
+                `${REACT_APP_API_SERVER}/ai/chat?q=${encodeURIComponent(currentInput)}`, {
+                    signal: abortControllerRef.current.signal,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true',
+                    },
+                }
             );
             
             if (!response.ok) {

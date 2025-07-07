@@ -30,7 +30,12 @@ export default function ReservationTicket() {
         
         try {
 
-            const res = await fetch(`${REACT_APP_API_SERVER}/reservation/movie/info?reservationCode=${ticketNumber}`);
+            const res = await fetch(`${REACT_APP_API_SERVER}/reservation/movie/info?reservationCode=${ticketNumber}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true',
+                }
+            });
 
             if (res.ok) {
                 const data = await res.json();

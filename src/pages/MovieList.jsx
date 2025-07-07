@@ -16,9 +16,15 @@ export default function MovieList() {
     useEffect(() => {
         async function fetchMovies() {
             try {
-                const res = await fetch(`${REACT_APP_API_SERVER}/movie/all`);
+                const res = await fetch(`${REACT_APP_API_SERVER}/movie/all`, {
+                    method: 'GET',
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true',
+                    },
+                });
                 if (res.ok) {
                     const data = await res.json();
+                    console.log(data);
                     setMovies(data);
                 }
             } catch (error) {
@@ -79,7 +85,11 @@ export default function MovieList() {
 
     const searchMovieFunc = async () => {
         try {
-            const res = await fetch(`${REACT_APP_API_SERVER}/search?title=${searchWord}`);
+            const res = await fetch(`${REACT_APP_API_SERVER}/search?title=${searchWord}`, {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true',
+                },
+            });
             if (res.ok) {
                 const data = await res.json();
                 setSearchedMovie(data);

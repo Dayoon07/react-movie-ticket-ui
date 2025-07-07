@@ -99,7 +99,12 @@ export default function SeatSelection(props) {
             if (!showtimeId) return;
 
             try {
-                const res = await fetch(`${REACT_APP_API_SERVER}/reservation/seats/occupied?showtimeId=${showtimeId}`);
+                const res = await fetch(`${REACT_APP_API_SERVER}/reservation/seats/occupied?showtimeId=${showtimeId}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true',
+                    }
+                });
                 if (res.ok) {
                     const data = await res.json();
                     console.log(data);
@@ -168,6 +173,7 @@ export default function SeatSelection(props) {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true',
                 },
                 body: JSON.stringify(reservationData),
             });
