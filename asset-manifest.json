@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/react-movie-ticket-ui/static/css/main.e6c13ad2.css",
-    "main.js": "/react-movie-ticket-ui/static/js/main.770251a9.js",
+    "main.js": "/react-movie-ticket-ui/static/js/main.e53a7c12.js",
     "static/js/453.871c52f0.chunk.js": "/react-movie-ticket-ui/static/js/453.871c52f0.chunk.js",
     "static/media/arrow-img.jpg": "/react-movie-ticket-ui/static/media/arrow-img.2abd7069ec6615c0b496.jpg",
     "index.html": "/react-movie-ticket-ui/index.html",
     "main.e6c13ad2.css.map": "/react-movie-ticket-ui/static/css/main.e6c13ad2.css.map",
-    "main.770251a9.js.map": "/react-movie-ticket-ui/static/js/main.770251a9.js.map",
+    "main.e53a7c12.js.map": "/react-movie-ticket-ui/static/js/main.e53a7c12.js.map",
     "453.871c52f0.chunk.js.map": "/react-movie-ticket-ui/static/js/453.871c52f0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.770251a9.js"
+    "static/js/main.e53a7c12.js"
   ]
 }
