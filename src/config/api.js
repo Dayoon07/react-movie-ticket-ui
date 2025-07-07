@@ -1,3 +1,3 @@
 export const REACT_APP_API_SERVER = `
-    http://localhost:9004/movie/api
+    https://d3ec-121-67-60-140.ngrok-free.app/movie/api
 `;
