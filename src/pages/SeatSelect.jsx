@@ -125,7 +125,7 @@ export default function SeatSelection(props) {
             setSeatLayout(layout);
             setLoading(false);
         }, 500);
-    }, [movieData?.seatLayout]);
+    }, [movieData?.seatLayout, parseSeatLayout]);
 
     const toggleSeat = (seatId) => {
         if (occupiedSeats.includes(seatId)) return;

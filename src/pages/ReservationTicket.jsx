@@ -222,7 +222,7 @@ export default function ReservationTicket() {
                                         <div
                                             className={`absolute top-2 right-2 px-2.5 py-1 rounded text-lg font-bold shadow-md ${getRatingBadgeStyle(displayData.ratingAge)}`}
                                         >
-                                            {String(displayData.ratingAge).substring(0, 2) == "청소" ? "18" : String(displayData.ratingAge).substring(0, 2)}
+                                            {String(displayData.ratingAge).substring(0, 2) === "청소" ? "18" : String(displayData.ratingAge).substring(0, 2)}
                                         </div>
                                         <img 
                                             src={displayData.reservationMoviePosterUrl} 

@@ -138,6 +138,7 @@ export default function AiChatPage() {
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef(null);
     const abortControllerRef = useRef(null);
+    const accumulatedContent = useRef('');
 
     const scrollToBottom = useCallback(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -181,7 +182,7 @@ export default function AiChatPage() {
 
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
-            let accumulatedContent = '';
+            accumulatedContent.current = '';
             let aiMessageAdded = false;
             const aiMessageId = Date.now() + 1;
 
@@ -191,13 +192,13 @@ export default function AiChatPage() {
                 if (done) break;
 
                 const chunk = decoder.decode(value, { stream: true });
-                accumulatedContent += chunk;
+                accumulatedContent.current += chunk;
 
                 if (!aiMessageAdded) {
                     const aiMessage = {
                         id: aiMessageId,
                         type: 'ai',
-                        content: accumulatedContent,
+                        content: accumulatedContent.current,
                         timestamp: new Date().toLocaleTimeString()
                     };
                     setMessages(prev => [...prev, aiMessage]);
@@ -206,7 +207,7 @@ export default function AiChatPage() {
                     setMessages(prev => 
                         prev.map(msg => 
                             msg.id === aiMessageId 
-                                ? { ...msg, content: accumulatedContent }
+                                ? { ...msg, content: accumulatedContent.current }
                                 : msg
                         )
                     );

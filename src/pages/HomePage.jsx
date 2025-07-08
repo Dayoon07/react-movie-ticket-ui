@@ -57,6 +57,7 @@ export default function HomePage() {
                 console.log(userData);
                 console.log(userData.userId);
                 setUser(userData);
+                console.log(user);
                 setIsLoggedIn(true);
                 setLoginForm({ phone: '', password: '' });
             } else {
