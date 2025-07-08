@@ -4,6 +4,7 @@ on:
   push:
     branches: [ master ]
 
+# 주석!
 permissions:
   contents: read
   pages: write
