@@ -1,1 +1,1 @@
-export const REACT_APP_API_SERVER = "https://a986c42858e5.ngrok-free.app/movie/api";
+export const REACT_APP_API_SERVER = "https://7d1e0b326b98.ngrok-free.app/movie/api";
