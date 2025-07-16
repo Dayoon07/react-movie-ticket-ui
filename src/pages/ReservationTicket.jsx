@@ -245,7 +245,7 @@ export default function ReservationTicket() {
                                                     <div className="space-y-3">
                                                         <div className="flex justify-between items-center">
                                                             <span className="text-gray-600">극장</span>
-                                                            <span className="font-semibold text-gray-800">CGV 강남점</span>
+                                                            <span className="font-semibold text-gray-800">CGV 안양시 범계점</span>
                                                         </div>
                                                         <div className="flex justify-between items-center">
                                                             <span className="text-gray-600">상영관</span>
