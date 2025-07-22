@@ -1,4 +1,4 @@
-## 프로젝트명 : 3학년 미래유먕 고졸인력양성 사업 프로젝트
+## 프로젝트명 : 3학년 미래유망 고졸인력양성 사업 프로젝트
 [테스트 영상](https://dayoon07.github.io/video/movie-ticket-test.mp4)
 
 ## 목차 
